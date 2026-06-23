@@ -108,14 +108,24 @@
   }
   .proj:first-of-type{border-top:none}
   @media(max-width:720px){.proj{grid-template-columns:1fr;gap:14px}}
-  /* project with embedded screenshot */
+  /* project with embedded screenshot — thumbnail expands on hover/click */
   .proj.has-shot{grid-template-columns:1fr;gap:20px}
   .shot-frame{border:1px solid var(--rule);border-radius:4px;overflow:hidden;background:var(--white);box-shadow:0 18px 44px -26px rgba(17,48,46,.4)}
   .shot-frame .bar{display:flex;align-items:center;gap:7px;padding:10px 14px;background:var(--paper-2);border-bottom:1px solid var(--rule)}
   .shot-frame .dot{width:10px;height:10px;border-radius:50%;background:var(--rule)}
   .shot-frame .url{margin-left:10px;font-size:12px;color:var(--muted);font-family:'Inter',sans-serif}
-  .shot-scroll{max-height:480px;overflow-y:auto}
-  .shot-scroll img{display:block;width:100%;height:auto}
+  .shot-thumb{position:relative;display:inline-block;max-width:340px;width:100%;cursor:zoom-in}
+  .shot-thumb .shot-window{max-height:200px;overflow:hidden;border-radius:0 0 4px 4px}
+  .shot-thumb img{display:block;width:100%;height:auto}
+  .shot-thumb .hint{position:absolute;bottom:10px;right:10px;font-size:11px;font-weight:500;color:var(--paper);background:rgba(17,48,46,.82);padding:5px 11px;border-radius:2px;display:flex;align-items:center;gap:6px;pointer-events:none}
+  /* expanded overlay */
+  .shot-toggle{position:absolute;opacity:0;width:0;height:0}
+  .shot-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(17,48,46,.78);padding:32px;cursor:zoom-out;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .shot-toggle:checked ~ .shot-overlay{display:flex;align-items:flex-start;justify-content:center}
+  @media(hover:hover){.shot-frame:hover ~ .shot-overlay{display:flex;align-items:flex-start;justify-content:center}}
+  .shot-overlay .shot-big{max-width:1000px;width:100%;background:var(--white);border-radius:4px;overflow:hidden;box-shadow:0 30px 80px -20px rgba(0,0,0,.6)}
+  .shot-overlay .shot-big img{display:block;width:100%;height:auto}
+  .shot-overlay .close-x{position:fixed;top:18px;right:22px;font-size:13px;font-weight:600;color:var(--paper);background:rgba(0,0,0,.35);border:1px solid rgba(246,243,236,.4);padding:8px 14px;border-radius:2px}
   .shot-cap{font-size:12.5px;color:var(--muted);margin-top:10px;display:flex;align-items:center;gap:8px}
   .badge-private{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--gold);background:var(--paper-2);border:1px solid var(--rule);padding:4px 10px;border-radius:2px}
   .p-num{font-family:'Fraunces',serif;font-size:30px;font-weight:600;color:var(--gold-soft);line-height:1;font-feature-settings:"tnum"}
@@ -191,7 +201,7 @@
     <aside class="id-card">
       <div class="tag">At a glance</div>
       <h3 class="serif">Andre T. Green, PMP</h3>
-      <div class="role">Instructional Designer · Birmingham, AL</div>
+      <div class="role">Web Applications Lead, Children's of Alabama · Birmingham, AL</div>
       <ul>
         <li><b>Focus</b><span>Learning design · multimedia · content governance · accessibility</span></li>
         <li><b>Certified</b><span>PMP (PMI) · pursuing PMI-ACP</span></li>
@@ -331,11 +341,19 @@
         </div>
         <div class="p-link"><span class="badge-private">Private · login required</span></div>
       </div>
-      <figure class="shot-frame" style="margin:0">
+      <figure class="shot-frame" style="margin:0;width:fit-content">
         <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">home.chsys.org</span></div>
-        <div class="shot-scroll"><img src="intranet.jpeg" alt="Screenshot of the Children's of Alabama Blue River employee intranet homepage, showing navigation, latest news, an events calendar, HR self-service, and apps and tools panels."></div>
+        <label class="shot-thumb" for="intranet-zoom">
+          <div class="shot-window"><img src="intranet.jpeg" alt="Thumbnail of the Children's of Alabama Blue River employee intranet homepage."></div>
+          <span class="hint"><i style="font-style:normal">⤢</i> Expand</span>
+        </label>
       </figure>
-      <div class="shot-cap"><span>Screenshot shown — the live intranet sits behind employee authentication and isn't publicly accessible. Scroll within the frame to view the full page.</span></div>
+      <input type="checkbox" id="intranet-zoom" class="shot-toggle" aria-label="Expand intranet screenshot">
+      <label class="shot-overlay" for="intranet-zoom">
+        <span class="close-x">✕ Close</span>
+        <span class="shot-big"><img src="intranet.jpeg" alt="Full screenshot of the Children's of Alabama Blue River employee intranet homepage, showing navigation, latest news, an events calendar, HR self-service, and apps and tools panels."></span>
+      </label>
+      <div class="shot-cap"><span>Hover or tap the thumbnail to view the full page — the live intranet sits behind employee authentication and isn't publicly accessible.</span></div>
     </div>
 
     <!-- 6 -->
@@ -403,7 +421,7 @@
 
 <footer>
   <div class="wrap">
-    Andre T. Green, PMP <span class="sep">·</span> Instructional Designer <span class="sep">·</span> Birmingham, Alabama
+    Andre T. Green, PMP <span class="sep">·</span> Web Applications Lead <span class="sep">·</span> Birmingham, Alabama
   </div>
 </footer>
 
