@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andre T. Green — Instructional Design Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#11302e;        /* deep teal-ink */
+    --ink-soft:#2c4f4b;
+    --paper:#f6f3ec;      /* warm paper */
+    --paper-2:#efe9dd;
+    --gold:#c08a2d;       /* warm gold accent */
+    --gold-soft:#e9d4a8;
+    --rule:#d9d0c0;
+    --white:#ffffff;
+    --muted:#5a6b67;
+    --max:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  .serif{font-family:'Fraunces',Georgia,serif}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(246,243,236,.86);
+    backdrop-filter:saturate(140%) blur(10px);
+    border-bottom:1px solid var(--rule);
+  }
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .brand{font-family:'Fraunces',serif;font-weight:600;font-size:18px;letter-spacing:.2px}
+  .brand span{color:var(--gold)}
+  .nav-links{display:flex;gap:26px;font-size:14px;font-weight:500}
+  .nav-links a{text-decoration:none;color:var(--ink-soft);padding-bottom:2px;border-bottom:1.5px solid transparent;transition:.2s}
+  .nav-links a:hover{color:var(--ink);border-color:var(--gold)}
+  @media(max-width:680px){.nav-links{display:none}}
+
+  /* ---------- HERO ---------- */
+  header.hero{padding:84px 0 64px;position:relative;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.45fr .9fr;gap:48px;align-items:center}
+  @media(max-width:840px){.hero-grid{grid-template-columns:1fr;gap:32px}}
+  .eyebrow{
+    font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:12px;
+  }
+  .eyebrow::before{content:"";width:34px;height:1.5px;background:var(--gold)}
+  h1.lead{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(38px,6vw,62px);line-height:1.04;letter-spacing:-.5px}
+  h1.lead em{font-style:italic;color:var(--gold)}
+  .sub{margin-top:24px;font-size:18px;max-width:46ch;color:var(--ink-soft)}
+  .hero-cta{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;font-weight:500;font-size:14.5px;
+    padding:12px 22px;border-radius:2px;text-decoration:none;transition:.2s;border:1.5px solid var(--ink);
+  }
+  .btn.primary{background:var(--ink);color:var(--paper)}
+  .btn.primary:hover{background:var(--ink-soft)}
+  .btn.ghost{background:transparent;color:var(--ink)}
+  .btn.ghost:hover{background:var(--ink);color:var(--paper)}
+  .arrow{font-size:16px;line-height:1}
+
+  /* hero card */
+  .id-card{
+    background:var(--ink);color:var(--paper);border-radius:4px;padding:30px 28px;
+    box-shadow:0 24px 60px -28px rgba(17,48,46,.55);
+  }
+  .id-card .tag{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);font-weight:600}
+  .id-card h3{font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin:8px 0 4px}
+  .id-card .role{font-size:14px;color:#bcd0cb;margin-bottom:20px}
+  .id-card ul{list-style:none;font-size:13.5px}
+  .id-card li{display:flex;gap:10px;padding:7px 0;border-top:1px solid rgba(255,255,255,.12)}
+  .id-card li b{color:var(--gold-soft);font-weight:600;min-width:78px;font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding-top:2px}
+  .id-card a{color:var(--paper);text-decoration:none;border-bottom:1px solid rgba(233,212,168,.45)}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:72px 0;border-top:1px solid var(--rule)}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:40px}
+  .sec-num{font-family:'Fraunces',serif;font-size:15px;color:var(--gold);font-weight:600;font-feature-settings:"tnum"}
+  .sec-title{font-family:'Fraunces',serif;font-size:clamp(26px,3.4vw,34px);font-weight:600;letter-spacing:-.3px}
+  .sec-intro{max-width:60ch;color:var(--ink-soft);font-size:16.5px;margin:-22px 0 0 0}
+
+  /* ---------- COMPETENCIES ---------- */
+  .comp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px}
+  @media(max-width:820px){.comp-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.comp-grid{grid-template-columns:1fr}}
+  .comp{background:var(--white);border:1px solid var(--rule);border-radius:4px;padding:22px 22px 24px;transition:.2s}
+  .comp:hover{border-color:var(--gold);transform:translateY(-2px)}
+  .comp .ic{width:38px;height:38px;border-radius:3px;background:var(--paper-2);display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:'Fraunces',serif;font-weight:600;font-size:16px;margin-bottom:14px}
+  .comp h4{font-size:15.5px;font-weight:600;margin-bottom:6px}
+  .comp p{font-size:13.8px;color:var(--muted);line-height:1.6}
+
+  /* ---------- PROJECTS ---------- */
+  .proj{
+    display:grid;grid-template-columns:64px 1fr auto;gap:26px;align-items:start;
+    padding:30px 0;border-top:1px solid var(--rule);
+  }
+  .proj:first-of-type{border-top:none}
+  @media(max-width:720px){.proj{grid-template-columns:1fr;gap:14px}}
+  /* project with embedded screenshot */
+  .proj.has-shot{grid-template-columns:1fr;gap:20px}
+  .shot-frame{border:1px solid var(--rule);border-radius:4px;overflow:hidden;background:var(--white);box-shadow:0 18px 44px -26px rgba(17,48,46,.4)}
+  .shot-frame .bar{display:flex;align-items:center;gap:7px;padding:10px 14px;background:var(--paper-2);border-bottom:1px solid var(--rule)}
+  .shot-frame .dot{width:10px;height:10px;border-radius:50%;background:var(--rule)}
+  .shot-frame .url{margin-left:10px;font-size:12px;color:var(--muted);font-family:'Inter',sans-serif}
+  .shot-scroll{max-height:480px;overflow-y:auto}
+  .shot-scroll img{display:block;width:100%;height:auto}
+  .shot-cap{font-size:12.5px;color:var(--muted);margin-top:10px;display:flex;align-items:center;gap:8px}
+  .badge-private{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--gold);background:var(--paper-2);border:1px solid var(--rule);padding:4px 10px;border-radius:2px}
+  .p-num{font-family:'Fraunces',serif;font-size:30px;font-weight:600;color:var(--gold-soft);line-height:1;font-feature-settings:"tnum"}
+  .p-body h3{font-family:'Fraunces',serif;font-size:22px;font-weight:600;line-height:1.2;margin-bottom:4px}
+  .p-meta{font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+  .p-body p{font-size:15.5px;color:var(--ink-soft);max-width:62ch;margin-bottom:14px}
+  .p-roles{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+  .chip{font-size:12px;font-weight:500;background:var(--paper-2);color:var(--ink-soft);padding:5px 11px;border-radius:2px;border:1px solid var(--rule)}
+  .skill-tag{font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:7px;margin-top:6px}
+  .skill-tag::before{content:"";width:16px;height:1.5px;background:var(--gold)}
+  .p-link{align-self:start;white-space:nowrap}
+  .p-link a{
+    display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:500;text-decoration:none;
+    color:var(--ink);border:1.5px solid var(--ink);padding:9px 16px;border-radius:2px;transition:.2s;
+  }
+  .p-link a:hover{background:var(--ink);color:var(--paper)}
+  @media(max-width:720px){.p-link{justify-self:start}}
+
+  /* ---------- TOOLS ---------- */
+  .tools{display:flex;flex-wrap:wrap;gap:10px}
+  .tool{font-size:13.5px;font-weight:500;background:var(--white);border:1px solid var(--rule);padding:8px 14px;border-radius:2px}
+  .tool b{color:var(--gold);font-weight:600}
+
+  /* ---------- CONTACT ---------- */
+  .contact-card{background:var(--ink);color:var(--paper);border-radius:6px;padding:54px 48px;text-align:center}
+  .contact-card h2{font-family:'Fraunces',serif;font-size:clamp(28px,4vw,40px);font-weight:600;margin-bottom:14px}
+  .contact-card p{color:#bcd0cb;max-width:50ch;margin:0 auto 28px;font-size:16.5px}
+  .contact-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .contact-row a{
+    display:inline-flex;align-items:center;gap:9px;font-size:14.5px;font-weight:500;text-decoration:none;
+    color:var(--paper);border:1.5px solid rgba(246,243,236,.4);padding:12px 22px;border-radius:2px;transition:.2s;
+  }
+  .contact-row a:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+  .contact-row a.solid{background:var(--gold);border-color:var(--gold);color:#2a1c05}
+  .contact-row a.solid:hover{background:var(--gold-soft)}
+
+  footer{padding:34px 0 48px;text-align:center;font-size:13px;color:var(--muted)}
+  footer .sep{color:var(--rule);margin:0 8px}
+
+  .credo{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(22px,3.2vw,30px);line-height:1.45;color:var(--ink);max-width:24ch}
+  .credo-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  @media(max-width:760px){.credo-grid{grid-template-columns:1fr;gap:24px}}
+  .credo-side p{color:var(--ink-soft);font-size:16px;margin-bottom:16px;max-width:50ch}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <div class="brand">Andre T. Green<span>.</span></div>
+    <div class="nav-links">
+      <a href="#approach">Approach</a>
+      <a href="#competencies">Competencies</a>
+      <a href="#work">Selected work</a>
+      <a href="#toolkit">Toolkit</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Instructional Design Portfolio</div>
+      <h1 class="lead serif">Designing learning that <em>holds up</em> when it matters.</h1>
+      <p class="sub">For two decades I've turned complex subject matter — public health, pediatric medicine, emergency preparedness — into clear, accessible, well-governed learning experiences. PMP-certified, accessibility-driven, and fluent across the full content lifecycle.</p>
+      <div class="hero-cta">
+        <a class="btn primary" href="#work">View selected work <span class="arrow">→</span></a>
+        <a class="btn ghost" href="#contact">Get in touch</a>
+      </div>
+    </div>
+    <aside class="id-card">
+      <div class="tag">At a glance</div>
+      <h3 class="serif">Andre T. Green, PMP</h3>
+      <div class="role">Instructional Designer · Birmingham, AL</div>
+      <ul>
+        <li><b>Focus</b><span>Learning design · multimedia · content governance · accessibility</span></li>
+        <li><b>Certified</b><span>PMP (PMI) · pursuing PMI-ACP</span></li>
+        <li><b>Education</b><span>MS Healthcare Innovation (in progress) · AI in Medicine certificate · BA Communication & Information Sciences</span></li>
+        <li><b>Scope</b><span>80+ sites · 150 departments · 846K annual learners reached</span></li>
+      </ul>
+    </aside>
+  </div>
+</header>
+
+<!-- APPROACH -->
+<section id="approach">
+  <div class="wrap">
+    <div class="credo-grid">
+      <div>
+        <div class="eyebrow">My approach</div>
+        <p class="credo">"Good instructional design is invisible. The learner just understands — and can act."</p>
+      </div>
+      <div class="credo-side">
+        <p>I start with the people on the other side of the screen: what they need to know, what gets in their way, and what success actually looks like once the course or content goes live.</p>
+        <p>From there I run the work like a project — needs analysis, content development, stakeholder review, UAT, launch, and post-launch optimization — so nothing ships half-finished and nothing gets lost between teams.</p>
+        <p>Accessibility (ADA / WCAG) isn't a final checkbox in my process. It's a design constraint I build in from the first draft, because learning that excludes people isn't finished learning.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETENCIES -->
+<section id="competencies">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title serif">Core competencies</h2>
+    </div>
+    <p class="sec-intro" style="margin-bottom:34px">The instructional-design skill set I bring — each demonstrated in the projects below.</p>
+    <div class="comp-grid">
+      <div class="comp">
+        <div class="ic">A</div>
+        <h4>Analysis &amp; needs assessment</h4>
+        <p>Translating subject-matter goals and audience data into clear learning objectives and content strategy.</p>
+      </div>
+      <div class="comp">
+        <div class="ic">D</div>
+        <h4>Content &amp; curriculum design</h4>
+        <p>Structuring courses, modules, and digital content so information is sequenced for understanding and retention.</p>
+      </div>
+      <div class="comp">
+        <div class="ic">M</div>
+        <h4>Multimedia development</h4>
+        <p>Scripting, editing, and producing instructional video and interactive media with Adobe Creative Cloud.</p>
+      </div>
+      <div class="comp">
+        <div class="ic">L</div>
+        <h4>LMS / CMS &amp; DAM</h4>
+        <p>Building and administering the platforms that deliver and govern learning content at scale.</p>
+      </div>
+      <div class="comp">
+        <div class="ic">★</div>
+        <h4>Accessibility &amp; UX</h4>
+        <p>ADA / WCAG-compliant design and usability testing so every learner can engage with the material.</p>
+      </div>
+      <div class="comp">
+        <div class="ic">↔</div>
+        <h4>Stakeholder &amp; vendor management</h4>
+        <p>PMP-led coordination across SMEs, leadership, and vendors — from kickoff through UAT and hypercare.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SELECTED WORK -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title serif">Selected work</h2>
+    </div>
+    <p class="sec-intro" style="margin-bottom:30px">Real projects spanning online curriculum, instructional video, digital publications, accessible web systems, and educational app development.</p>
+
+    <!-- 1 -->
+    <div class="proj">
+      <div class="p-num">01</div>
+      <div class="p-body">
+        <h3 class="serif">South Central Center for Public Health Preparedness</h3>
+        <div class="p-meta">Online learning · Master's curriculum development</div>
+        <p>Collaborated with the UAB School of Public Health to develop online instructional content and course curricula for master's programs — part of a multi-state consortium (Tulane, UAB, and public health departments across Mississippi, Alabama, Arkansas, and Louisiana) building distance-learning capacity for the public health workforce.</p>
+        <div class="skill-tag">Curriculum design · Online learning development</div>
+      </div>
+      <div class="p-link"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2569988/" target="_blank" rel="noopener">Published work <span>↗</span></a></div>
+    </div>
+
+    <!-- 2 -->
+    <div class="proj">
+      <div class="p-num">02</div>
+      <div class="p-body">
+        <h3 class="serif">ADPH Preparedness Minute Video Series</h3>
+        <div class="p-meta">Collaborator · Digital editor</div>
+        <p>Produced and edited a library of short-form instructional videos for the Alabama Department of Public Health — distilling emergency-preparedness guidance into concise, broadcast-ready microlearning the public could absorb in a minute. A model for turning dense expert content into accessible, repeatable learning units.</p>
+        <div class="skill-tag">Instructional video · Microlearning · Editing</div>
+      </div>
+      <div class="p-link"><a href="https://www.alabamapublichealth.gov/cep/preparedness-minutes-library.html" target="_blank" rel="noopener">View library <span>↗</span></a></div>
+    </div>
+
+    <!-- 3 -->
+    <div class="proj">
+      <div class="p-num">03</div>
+      <div class="p-body">
+        <h3 class="serif">Inside Pediatrics Magazine</h3>
+        <div class="p-meta">Digital content · Web applications</div>
+        <p>Led digital content and web-application delivery for Children's of Alabama's clinical magazine — packaging specialized medical knowledge into an engaging, navigable digital publication for clinicians and families. Demonstrates content structuring and digital storytelling for an expert audience.</p>
+        <div class="skill-tag">Digital content design · Information architecture</div>
+      </div>
+      <div class="p-link"><a href="https://user-8msctv.cld.bz/Inside-Pediatrics-Magazine" target="_blank" rel="noopener">Read issue <span>↗</span></a></div>
+    </div>
+
+    <!-- 4 -->
+    <div class="proj">
+      <div class="p-num">04</div>
+      <div class="p-body">
+        <h3 class="serif">Children's of Alabama — Public Websites</h3>
+        <div class="p-meta">Implementation manager · UX · Content · Vendor relations</div>
+        <p>Managed design, UX, content, and vendor relationships across 80+ external websites serving 846K annual visitors. Ran platform migrations and redesigns end to end — coordinating cross-departmental SMEs, setting timelines, supervising UAT, and providing go-live support and post-launch optimization.</p>
+        <div class="skill-tag">Implementation · UAT · Content governance</div>
+      </div>
+      <div class="p-link"><a href="https://www.childrensal.org/" target="_blank" rel="noopener">Visit site <span>↗</span></a></div>
+    </div>
+
+    <!-- 5 -->
+    <div class="proj has-shot">
+      <div style="display:grid;grid-template-columns:64px 1fr auto;gap:26px;align-items:start">
+        <div class="p-num">05</div>
+        <div class="p-body">
+          <h3 class="serif">Children's of Alabama — Internal Intranet (Blue River)</h3>
+          <div class="p-meta">Implementation lead · Administration · IT collaborator</div>
+          <p>Led implementation and ongoing administration of "Blue River," the organization's internal employee intranet — partnering directly with IT on development, content updates, and UX. A central hub surfacing news, HR self-service, education &amp; training, events, and apps for the entire workforce: the internal-facing counterpart to enterprise enablement, getting the right information to staff reliably and clearly.</p>
+          <div class="skill-tag">Internal enablement · Platform administration</div>
+        </div>
+        <div class="p-link"><span class="badge-private">Private · login required</span></div>
+      </div>
+      <figure class="shot-frame" style="margin:0">
+        <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">home.chsys.org</span></div>
+        <div class="shot-scroll"><img src="intranet.jpeg" alt="Screenshot of the Children's of Alabama Blue River employee intranet homepage, showing navigation, latest news, an events calendar, HR self-service, and apps and tools panels."></div>
+      </figure>
+      <div class="shot-cap"><span>Screenshot shown — the live intranet sits behind employee authentication and isn't publicly accessible. Scroll within the frame to view the full page.</span></div>
+    </div>
+
+    <!-- 6 -->
+    <div class="proj">
+      <div class="p-num">06</div>
+      <div class="p-body">
+        <h3 class="serif">Poison Perils of Alabama — Mobile App</h3>
+        <div class="p-meta">Design &amp; development coordinator · Vendor relations</div>
+        <p>Coordinated design, development, and content for the Alabama Poison Information Center's educational mobile app — managing the vendor relationship and content lifecycle to put potentially life-saving safety education directly in users' hands. Educational product design from concept through release.</p>
+        <div class="skill-tag">Educational app · Product coordination</div>
+      </div>
+      <div class="p-link"><a href="https://apps.apple.com/us/app/poison-perils-of-alabama/id688824388" target="_blank" rel="noopener">App Store <span>↗</span></a></div>
+    </div>
+
+    <!-- 7 -->
+    <div class="proj">
+      <div class="p-num">07</div>
+      <div class="p-body">
+        <h3 class="serif">UserWay ADA Accessibility Program</h3>
+        <div class="p-meta">Manager · Administration · Vendor relations</div>
+        <p>Owned the rollout and administration of UserWay accessibility tooling across Children's of Alabama web properties — managing the vendor relationship and ensuring ADA / WCAG compliance so content stays usable for every learner, regardless of ability.</p>
+        <div class="skill-tag">Accessibility · ADA / WCAG compliance</div>
+      </div>
+      <div class="p-link"><a href="https://www.childrensal.org" target="_blank" rel="noopener">See in practice <span>↗</span></a></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TOOLKIT -->
+<section id="toolkit">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title serif">Toolkit</h2>
+    </div>
+    <p class="sec-intro" style="margin-bottom:28px">The platforms and tools I use to design, build, govern, and deliver learning content.</p>
+    <div class="tools">
+      <span class="tool"><b>Authoring</b> · Adobe Creative Cloud</span>
+      <span class="tool"><b>AI</b> · Claude · OpenAI · Copilot · Gemini</span>
+      <span class="tool"><b>CMS / LMS</b> · Canvas · WebCT · Drupal · Sitecore · WordPress · Directus</span>
+      <span class="tool"><b>DAM</b> · Canto · WebDAM</span>
+      <span class="tool"><b>Analytics</b> · Google Analytics</span>
+      <span class="tool"><b>PM</b> · Microsoft Project · Monday.com · Trello</span>
+      <span class="tool"><b>Collaboration</b> · Slack · Microsoft 365 · Google Suite</span>
+      <span class="tool"><b>Comms</b> · Constant Contact</span>
+      <span class="tool"><b>Accessibility</b> · UserWay (ADA / WCAG)</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="border-top:none">
+  <div class="wrap">
+    <div class="contact-card">
+      <h2 class="serif">Let's build learning that lasts.</h2>
+      <p>I'm excited about the opportunity to potentially contribute to the Instructional Design team at Southern Company — bringing two decades of curriculum, multimedia, and accessible-content experience to enterprise learning.</p>
+      <div class="contact-row">
+        <a class="solid" href="mailto:andre3027@gmail.com">✉ andre3027@gmail.com</a>
+        <a href="tel:+12054105955">☎ (205) 410-5955</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Andre T. Green, PMP <span class="sep">·</span> Instructional Designer <span class="sep">·</span> Birmingham, Alabama
+  </div>
+</footer>
+
+</body>
+</html>
